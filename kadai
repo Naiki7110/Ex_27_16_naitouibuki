@@ -1,0 +1,140 @@
+
+using System;
+using System.Net;
+
+namespace Ex_27_16_naitouibuki
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("幅");
+            var width = float.Parse(Console.ReadLine());
+            Console.WriteLine("高さ");
+            var height = float.Parse(Console.ReadLine());
+            Console.WriteLine("奥行");
+            var depth = float.Parse(Console.ReadLine());
+            Box box = new Box(width, height, depth);
+
+
+            Console.WriteLine($"直方体表面積={box.GetSurface()}");
+            Console.WriteLine($"体積={box.GetVolueme()}");
+
+            Console.WriteLine("半径");
+            var radius = float.Parse(Console.ReadLine());
+            Console.WriteLine("高さ");
+            var cylinderheight = float.Parse(Console.ReadLine());
+            Cylinder cylinder = new Cylinder(radius, cylinderheight);
+
+            Console.WriteLine($"円柱表面積={cylinder.GetSurface()}");
+            Console.WriteLine($"体積={cylinder.GetVolueme()}");
+
+
+            Console.WriteLine("半径");
+            var sphereradius = float.Parse(Console.ReadLine());
+            Sphere sphere = new Sphere(sphereradius);
+
+            Console.WriteLine($"球表面積={sphere.GetSurface()}");
+            Console.WriteLine($"体積={sphere.GetVolueme()}");
+
+
+            Console.WriteLine("底辺");
+            var bottom = float.Parse(Console.ReadLine());
+            Console.WriteLine("三角形の高さ");
+            var triangleheightt = float.Parse(Console.ReadLine());
+            Console.WriteLine("高さ");
+            var top = float.Parse(Console.ReadLine());
+            TriangularPrism triangularprism = new TriangularPrism(bottom, height, top);
+
+
+            Console.WriteLine($"三角柱表面積={triangularprism.GetSurface()}");
+            Console.WriteLine($"体積={triangularprism.GetVolueme()}");
+
+        }
+        class Box
+        {
+            float width;
+            float height;
+            float depth;
+
+            public Box(float width, float height, float depth)
+            {
+                this.width = width;
+                this.height = height;
+                this.depth = depth;
+            }
+
+            public float GetSurface()
+            {
+                return (width * height + depth * height + width * depth) * 2;
+            }
+            public float GetVolueme()
+            {
+                return width * height * depth;
+            }
+
+        }
+        class Cylinder
+        {
+            float radius;
+            float cylinderheight;
+
+            public Cylinder(float radius, float cylinderheight)
+            {
+                this.radius = radius;
+                this.cylinderheight = cylinderheight;
+            }
+
+            public float GetSurface()
+            {
+                return (radius * radius * (float)Math.PI) * 2 + (radius * 2 * (float)Math.PI * cylinderheight);
+            }
+
+            public float GetVolueme()
+            {
+                return radius * radius * (float)Math.PI * cylinderheight;
+            }
+
+        }
+        class Sphere
+        {
+            float sphereradius;
+            public Sphere(float sphereradius)
+            {
+                this.sphereradius = sphereradius;
+            }
+
+            public float GetSurface()
+            {
+                return (4 * (float)Math.PI * sphereradius * sphereradius);
+            }
+            public float GetVolueme()
+            {
+                return 4 * (float)Math.PI / 3 * sphereradius * sphereradius * sphereradius;
+            }
+
+        }
+        class TriangularPrism
+        {
+            float bottom;
+            float triangleheight;
+            float top;
+            public TriangularPrism(float bottom, float height, float top)
+            {
+                this.bottom = bottom;
+                this.triangleheight = height;
+                this.top = top;
+            }
+            public float GetSurface()
+            {
+                return bottom * top + (bottom + top + (float)Math.Sqrt(bottom * bottom + top * top)) * triangleheight;
+            }
+            public float GetVolueme()
+            {
+                return (bottom * top) / 2 * triangleheight;
+            }
+        }
+
+    }
+}
